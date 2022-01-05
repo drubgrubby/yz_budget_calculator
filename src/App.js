@@ -1,38 +1,22 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-// import { db } from './utils/firebase.js';
+import { db } from './utilities/firebase.js';
+import { collection, getDocs } from 'firebase/firestore/lite';
 
-
-// Import and initialize firebase
-/* ToDo: move to utils file */
-import { initializeApp} from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-
-const firebaseConfig = {
-	apiKey: "AIzaSyD7NUVfrImccSo8FuCBG7bXVk0oLFqgE-k",
-  authDomain: "yardzen-demo.firebaseapp.com",
-  databaseURL: "https://yardzen-demo.firebaseio.com",
-  projectId: "yardzen-demo",
-  storageBucket: "yardzen-demo.appspot.com",
-  messagingSenderId: "509183652730",
-  appId: "1:509183652730:web:ba2208f7d8e0882f009cc3"
-}
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
+// Import components
+import { EnterBudget, DisplayBudget, SelectDesignItems, BudgetOverUnder } from './components/index'
 
 function App() {
 
   /* ToDo: Create state for :
       budget
-      fieldUpdates
-      errors
-
+      selected items
+      errors ex. budget too high/low
   */
 
   // Create and initialize state
   const [items, setItems] = useState({});
+  const [enterBudget, setEnterBudget] = useState(true);
 
   // Get items from Firebase collection
   async function getItems() {
@@ -46,13 +30,16 @@ function App() {
     getItems()
   }, []);
 
-  console.log('items:',items);
-
+  console.log('items: ', items);
 
   return (
-    <div className="App">
-      <div>Yardzen Budget Calculator</div>
-
+    <div className='App'>
+      <div className='calculator-container'>
+        <div>Yardzen Budget Calculator</div>
+        <div className='temp-border'>{enterBudget ? <EnterBudget /> : <DisplayBudget /> } </div>
+        <div className='temp-border'><BudgetOverUnder /></div>
+        <div className='temp-border'><SelectDesignItems /></div>
+      </div>
     </div>
   );
 }

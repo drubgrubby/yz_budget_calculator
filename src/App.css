@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+/*
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +36,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+*/
+
+/* Calculator app starts here */
+.calculator-container {
+  width: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+.temp-border {
+  border: 1px solid green;
 }
