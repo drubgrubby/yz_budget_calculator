@@ -1,9 +1,13 @@
-const DisplayBudget = () => {
+import reactDom from "react-dom";
+
+const DisplayBudget = ({
+	budget,
+	handleBudgetClick,
+}) => {
 
 	return (
 		<>
-			Once the budget is entered the EnterBudget module is replaced by this module
-			that displays the budget with an option to edit which returns to the EnterBudget module.   
+			<div className='pointer' onClick={ handleBudgetClick }>Your budget is ${ budget }</div>
 		</>
 	)
 

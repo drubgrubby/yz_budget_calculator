@@ -1,12 +1,24 @@
-const EnterBudget = () => {
+const EnterBudget = ({
+	budget,
+	handleBudgetClick,
+	handleBudgetInputChange,
+	errors
+}) => {
 
 	return (
-		<>
-			Customer enters budget. After budget is entered swaps to DisplayBudget component that, not surprisingly, displays the
-			customer's budget with an option to edit their budget. Entering the budget will trigger the display of the design items.  
-		</>
+		<div>
+			<div>
+				<input 
+					type='text' 
+					name='budget' 
+					value={ budget } 
+					onChange={ handleBudgetInputChange }
+					placeholder="Enter your project budget"
+				/>
+				<button onClick={ handleBudgetClick }>Let's Go!</button>
+			</div>
+			<div><span className='red'>{ errors }</span></div>
+	</div>
 	)
-
 };
-
 export default EnterBudget;

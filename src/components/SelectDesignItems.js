@@ -1,13 +1,30 @@
-const SelectDesignItems = () => {
+import { type } from "@testing-library/user-event/dist/type";
+import RadioButtonByType from "./RadioButtonByType";
+
+const SelectDesignItems = ({
+	items,
+	selectedItems,
+	setSelectedItems
+}) => {
+
+	// Get the item types so we can make radio button groups out of them
+	const itemValues = Object.values(items);
+	const types = [...new Set(itemValues.map(item => item.type))];
 
 	return (
 		<>
-			This component will display the design items grouped by type. One item from each type can be selected.
-			Selected items will be stored in state.    
+				{types.map (( type, index) => (
+					<RadioButtonByType
+						index = { index }
+						items = { items }
+						type = { type }
+						selectedItems = { selectedItems }
+						setSelectedItems = { setSelectedItems }
+				/>
+				))}
 		</>
 	)
 
 };
 
 export default SelectDesignItems;
-;
