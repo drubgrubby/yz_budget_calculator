@@ -48,7 +48,7 @@ function App() {
 
     // If the budget is higher than the sum of the most expensive options
     // or lower than the least expensive option...ERROR!
-    const budgetHigh = 500000, budgetLow = 5000;
+    const budgetHigh = 200000, budgetLow = 1000;
 
     if (budget > budgetHigh || budget < budgetLow ){
       setErrors(`Budget must be in the range of ${budgetLow} - ${budgetHigh} `);
@@ -64,6 +64,7 @@ function App() {
 
     const isError = validateBudget(event.target.value);
 
+    // If there's no error, show select options
     if (!isError) {
       setShowEnterBudget(showEnterBudget === true ? false : true);
     }
@@ -100,7 +101,13 @@ function App() {
               handleBudgetClick = { handleBudgetClick }
               /> 
               </div>
-              <div className='temp-border'><BudgetOverUnder /></div>
+              <div className='temp-border'>
+                <BudgetOverUnder
+                  budget = { budget }
+                  items = { items }
+                  selectedItems = { selectedItems }
+               />
+               </div>
               <div className='temp-border'>
                 <SelectDesignItems 
                   items = { items }
