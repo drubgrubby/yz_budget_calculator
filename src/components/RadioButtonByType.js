@@ -10,19 +10,30 @@ const RadioButtonByType = ({
 		return i.type === type; 
 	})
 
-	
+	const onRadioChangeValue = (type, id) => {
+		// If there's already an entry for that type, update it, else add it.
+		let tempSelected = [...selectedItems];
+		for (let i =0; i < tempSelected.length; i++) {
+			if (tempSelected[i].type === type) {
+				tempSelected.splice(i,1);
+			} 
+		}
+		
+		let kvp = {type: type, id: id};
+		setSelectedItems([...tempSelected, kvp]);	
+	};
+
 
 	return (
 	<div className="temp-border">
 		<div>{ type }</div>
-		{/* <div>
+		<div onChange={ () => onRadioChangeValue(type, 0) }>
 			<input 
 				type='radio'
 				value='0'
-				name={type}`
-				checked={true}
+				name={type}
 			/> None
-		</div> */}
+		</div>
 		<div>
 			{itemsByType.map((v,i) => {
 				const lp = v.lowPrice
@@ -33,10 +44,10 @@ const RadioButtonByType = ({
 					.slice(0,-2);		
 
 				return (
-					<div>
+					<div key={i} onChange={ () => onRadioChangeValue(type, v._id) }>
 						<input 
 							type='radio'
-							value={v.name}
+							value={v._id}
 							name={type}
 						/> {v.name} ${lp} - ${hp}
 					</div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { db } from './utilities/firebase.js';
 import { collection, getDocs } from 'firebase/firestore/lite';
+import { addIds } from './utilities/addId';
 
 // Import components
 import { EnterBudget, DisplayBudget, SelectDesignItems, BudgetOverUnder } from './components/index'
@@ -11,8 +12,13 @@ import fakeFirebase from './utilities/fakeFirebase';
 
 function App() {
 
+  // Add id to items cause, 'c'mon, all items should have an id
+  // Also, the data has duplicates and I'm not sure if that's an
+  // error, or the test
+  const itemsId = addIds(fakeFirebase);
+
   // Create and initialize state
-  const [items, setItems] = useState(fakeFirebase);
+  const [items, setItems] = useState(itemsId);
   const [showEnterBudget, setShowEnterBudget] = useState(true);
   const [budget, setBudget] = useState('');
   const [selectedItems, setSelectedItems] = useState([]);
@@ -23,30 +29,17 @@ function App() {
   //   const itemsCollection = collection(db, 'items');
   //   const itemSnapshot = await getDocs(itemsCollection);
   //   const itemList = itemSnapshot.docs.map(doc => doc.data());
-  //   setItems(itemList);
+  //   const itemsId = addIds(itemList);
+  //   setItems(itemsId);
   // };
-
-  // // Get items from Firebase collection
-  // const getItems = async () => {
-  //   const itemsCollection = collection(db, 'items');
-  //   const response = await getDocs(itemsCollection);
-  //   const data = response.docs.map(doc => doc.data());
-  //   return data
-  // };
-
-  // getItems()
-  // .then( (data) => {
-  //   //console.log(data);
-  //   setItems(data);
-  // })
-  // .catch( (error) => {
-  //   console.log(`Firebase Error: `, error);
-  //   alert("Server not responding.  Please try again.");
-  // });
 
   // useEffect(() => {
   //     getItems()
   // }, []);
+
+  // useEffect (() => {
+	// 	console.log('selected:', selectedItems);
+	// },[selectedItems]);
 
 
   const validateBudget = () => {

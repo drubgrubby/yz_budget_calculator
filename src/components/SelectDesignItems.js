@@ -1,5 +1,5 @@
 import { type } from "@testing-library/user-event/dist/type";
-import RadioButtonByType from "./RadioButtonByType";
+import { RadioButtonByType } from '../components/index'
 
 const SelectDesignItems = ({
 	items,
@@ -15,7 +15,7 @@ const SelectDesignItems = ({
 		<>
 				{types.map (( type, index) => (
 					<RadioButtonByType
-						index = { index }
+						key = { index }
 						items = { items }
 						type = { type }
 						selectedItems = { selectedItems }
