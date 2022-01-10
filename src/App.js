@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import './App.css';
+import './components/BudgetCalculator.css';
 import { db } from './utilities/firebase.js';
 import { collection, getDocs } from 'firebase/firestore/lite';
 import { addIds } from './utilities/addId';
 
 // Import components
-import { EnterBudget, DisplayBudget, SelectDesignItems, BudgetOverUnder } from './components/index'
+import { EnterBudget, DisplayBudget, SelectDesignItems, BudgetOverUnder, Header } from './components/index';
 
 // Having trouble with Firebase so created fake data
 import fakeFirebase from './utilities/fakeFirebase';
@@ -19,16 +19,21 @@ function App() {
 
   // Create and initialize state
   const [items, setItems] = useState(itemsId);
+  //const [items, setItems] = useState();
   const [showEnterBudget, setShowEnterBudget] = useState(true);
+  const [showSelectItems, setShowSelectItems] = useState(false);
   const [budget, setBudget] = useState('');
   const [selectedItems, setSelectedItems] = useState([]);
   const [errors, setErrors] = useState('');
 
-  // Get items from Firebase collection
+  // // Get items from Firebase collection
   // async function getItems() {
   //   const itemsCollection = collection(db, 'items');
   //   const itemSnapshot = await getDocs(itemsCollection);
   //   const itemList = itemSnapshot.docs.map(doc => doc.data());
+  //   // I added ids to the items 'cause items should have ids
+  //   // Also, there are duplicates and I didn't know if that was
+  //   // bad data, or part of the test.
   //   const itemsId = addIds(itemList);
   //   setItems(itemsId);
   // };
@@ -37,14 +42,10 @@ function App() {
   //     getItems()
   // }, []);
 
-  // useEffect (() => {
-	// 	console.log('selected:', selectedItems);
-	// },[selectedItems]);
-
 
   const validateBudget = () => {
  
-    /* ToDo: This is ugly and only supports one error.  Make it better and more flexible */
+    /* ToDo: This is ugly and only supports one error.  Make it better and more universal and import it */
 
     // If the budget is higher than the sum of the most expensive options
     // or lower than the least expensive option...ERROR!
@@ -67,6 +68,8 @@ function App() {
     // If there's no error, show select options
     if (!isError) {
       setShowEnterBudget(showEnterBudget === true ? false : true);
+      // This is to fix the bug, but I'm going to style first and hope I get back to it.
+      setShowSelectItems(true);
     }
   };
 
@@ -83,7 +86,8 @@ function App() {
   return (
     <div className='App'>
       <div className='calculator-container'>
-        <div>Yardzen Budget Calculator</div>
+        <div><Header /></div>
+        <h2>Yardzen Budget Calculator</h2>
         <div className='calculator-container'>
           {showEnterBudget 
             ? 
@@ -96,26 +100,33 @@ function App() {
             :
             <>
             <div>
-              <DisplayBudget 
-              budget = { budget }
-              handleBudgetClick = { handleBudgetClick }
-              /> 
+                <DisplayBudget 
+                budget = { budget }
+                handleBudgetClick = { handleBudgetClick }
+                /> 
               </div>
+            </>
+          }
+          {showSelectItems
+            ?
+            <>
               <div className='temp-border'>
                 <BudgetOverUnder
                   budget = { budget }
                   items = { items }
                   selectedItems = { selectedItems }
                />
-               </div>
+              </div>
               <div className='temp-border'>
                 <SelectDesignItems 
                   items = { items }
                   selectedItems = { selectedItems}
                   setSelectedItems = { setSelectedItems }
                 />
-                </div>
+              </div>
            </>
+           :
+              <></>
           } 
             </div>
 
