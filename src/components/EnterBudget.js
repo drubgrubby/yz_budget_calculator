@@ -14,7 +14,7 @@ const EnterBudget = ({
 					name='budget' 
 					value={ budget } 
 					onChange={ handleBudgetInputChange }
-					placeholder="Enter your project budget"
+					placeholder="Enter project budget"
 				/>
 				<button onClick={ handleBudgetClick }>Let's Go!</button>
 			</div>

@@ -1,5 +1,3 @@
-//import reactDom from "react-dom";
-
 const DisplayBudget = ({
 	budget,
 	handleBudgetClick,

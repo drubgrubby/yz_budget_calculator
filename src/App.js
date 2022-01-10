@@ -4,45 +4,42 @@ import { db } from './utilities/firebase.js';
 import { collection, getDocs } from 'firebase/firestore/lite';
 import { addIds } from './utilities/addId';
 import YardzenBackgroundImage from './assets/yardzen_background.png';
+import { bgStyle } from './components/styles';
 
 // Import components
 import { EnterBudget, DisplayBudget, SelectDesignItems, BudgetOverUnder, Header } from './components/index';
 
 // Having trouble with Firebase so created fake data
-import fakeFirebase from './utilities/fakeFirebase';
+//import fakeFirebase from './utilities/fakeFirebase';
 
 function App() {
 
-  // Add id to items cause, 'c'mon, all items should have an id
-  // Also, the data has duplicates and I'm not sure if that's an
-  // error, or the test
-  const itemsId = addIds(fakeFirebase);
+  // // This is for my fake data. Leaving it just in case.
+  // const itemsId = addIds(fakeFirebase);
 
   // Create and initialize state
-  const [items, setItems] = useState(itemsId);
-  //const [items, setItems] = useState();
+  const [items, setItems] = useState();
   const [showEnterBudget, setShowEnterBudget] = useState(true);
   const [showSelectItems, setShowSelectItems] = useState(false);
   const [budget, setBudget] = useState('');
   const [selectedItems, setSelectedItems] = useState([]);
   const [errors, setErrors] = useState('');
 
-  // // Get items from Firebase collection
-  // async function getItems() {
-  //   const itemsCollection = collection(db, 'items');
-  //   const itemSnapshot = await getDocs(itemsCollection);
-  //   const itemList = itemSnapshot.docs.map(doc => doc.data());
-  //   // I added ids to the items 'cause items should have ids
-  //   // Also, there are duplicates and I didn't know if that was
-  //   // bad data, or part of the test.
-  //   const itemsId = addIds(itemList);
-  //   setItems(itemsId);
-  // };
+  // Get items from Firebase collection
+  async function getItems() {
+    const itemsCollection = collection(db, 'items');
+    const itemSnapshot = await getDocs(itemsCollection);
+    const itemList = itemSnapshot.docs.map(doc => doc.data());
+    // I added ids to the items 'cause items should have ids
+    // Also, there are duplicates and I didn't know if that was
+    // bad data, or part of the test.
+    const itemsId = addIds(itemList);
+    setItems(itemsId);
+  };
 
-  // useEffect(() => {
-  //     getItems()
-  // }, []);
-
+  useEffect(() => {
+      getItems()
+  }, []);
 
   const validateBudget = () => {
  
@@ -66,10 +63,8 @@ function App() {
 
     const isError = validateBudget(event.target.value);
 
-    // If there's no error, show select options
     if (!isError) {
       setShowEnterBudget(showEnterBudget === true ? false : true);
-      // This is to fix the bug, but I'm going to style first and hope I get back to it.
       setShowSelectItems(true);
     }
   };
@@ -86,7 +81,7 @@ function App() {
 
   return (
     <div className='App'>
-      <div className='calculator-container' style={{ backgroundImage: `url(${YardzenBackgroundImage})` }}>
+      <div className='calculator-container' style={bgStyle}>
         <div><Header /></div>
         <h2>Yardzen Budget Calculator</h2>
         <div>
@@ -127,13 +122,11 @@ function App() {
               </div>
            </>
            :
-              <></>
+            <></>
           } 
             </div>
-
       </div>
     </div>
   );
 }
-
 export default App;

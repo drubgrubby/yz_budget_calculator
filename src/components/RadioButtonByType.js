@@ -60,6 +60,5 @@ const RadioButtonByType = ({
 		</div>
 	</div>
 	)
-
 };
 export default RadioButtonByType;

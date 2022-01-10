@@ -10,7 +10,6 @@ const BudgetOverUnder = ({
 	const [budgetMath, setBudgetMath] = useState('Select design items below.');
 	const [budgetStatus, setBudgetStatus] = useState('');
 
-
 	let highTotalToPrint = 0;
 	let lowTotalToPrint = 0;
 
@@ -60,9 +59,8 @@ const BudgetOverUnder = ({
 			overUnder = 'JUSTRIGHT';
 		}
 		
-
 		const statusOptions = {
-			OVER: "You're over budget. You can choose some less expensive options, or increase your budget.",
+			OVER: "You're over budget. Scale back a bit or increase your budget.",
 			UNDER: "You're under Budget. Is there something else you want?",
 			JUSTRIGHT: "You're right on target! Confirm your selections and we'll get started"
 		}

@@ -26,5 +26,4 @@ const SelectDesignItems = ({
 	)
 
 };
-
 export default SelectDesignItems;
