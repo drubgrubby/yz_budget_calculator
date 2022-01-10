@@ -50,7 +50,7 @@ line-height: 1.2em;
 
 button { 
 	color: #111;
-	border: 2px solid #111;
+	border: 1px solid #111;
 	background-color: white;
 	transition: 0.1s background-color linear, 0.1s color linear;
 	cursor: pointer;
@@ -60,14 +60,15 @@ button {
 
 button:hover { 
 	color: white;
-	border-width: 2px;
-	border-style: solid;
 	background-color: #111;
 	transition: 0.1s background-color linear, 0.1s color linear;
 	}
 
 .input-container {
 	margin-bottom: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 input {
@@ -84,6 +85,7 @@ input:focus {
 .display-budget {
 	font-size: 26px;
 	font-weight: 400;
+	cursor: pointer;
 }
 
 .display-budget_click {
