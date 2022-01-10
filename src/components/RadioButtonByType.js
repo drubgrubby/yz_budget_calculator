@@ -23,36 +23,40 @@ const RadioButtonByType = ({
 		setSelectedItems([...tempSelected, kvp]);	
 	};
 
+	// Remove underscores from name
+	const title = type.replace(/_/g, " ");
 
 	return (
-	<div className="temp-border">
-		<div>{ type }</div>
-		<div onChange={ () => onRadioChangeValue(type, 0) }>
-			<input 
-				type='radio'
-				value='0'
-				name={type}
-			/> None
-		</div>
-		<div>
-			{itemsByType.map((v,i) => {
-				const lp = v.lowPrice
-					.toString()
-					.slice(0,-2);
-				const hp = v.highPrice
-					.toString()
-					.slice(0,-2);		
+	<div className="design-options-container">
+		<div className="design-options-title">{ title }</div>
+		<div className="design-radio-box">
+			<div onChange={ () => onRadioChangeValue(type, 0) }>
+				<input 
+					type='radio'
+					value='0'
+					name={type}
+				/> None
+			</div>
+			<div>
+				{itemsByType.map((v,i) => {
+					const lp = v.lowPrice
+						.toString()
+						.slice(0,-2);
+					const hp = v.highPrice
+						.toString()
+						.slice(0,-2);		
 
-				return (
-					<div key={i} onChange={ () => onRadioChangeValue(type, v._id) }>
-						<input 
-							type='radio'
-							value={v._id}
-							name={type}
-						/> {v.name} ${lp} - ${hp}
-					</div>
+					return (
+						<div key={i} onChange={ () => onRadioChangeValue(type, v._id) }>
+							<input 
+								type='radio'
+								value={v._id}
+								name={type}
+							/> {v.name} ${lp} - ${hp}
+						</div>
+					)}
 				)}
-			)}
+			</div>
 		</div>
 	</div>
 	)

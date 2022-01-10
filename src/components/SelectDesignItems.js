@@ -12,7 +12,7 @@ const SelectDesignItems = ({
 	const types = [...new Set(itemValues.map(item => item.type))];
 
 	return (
-		<>
+		<div className="select-items">
 				{types.map (( type, index) => (
 					<RadioButtonByType
 						key = { index }
@@ -22,7 +22,7 @@ const SelectDesignItems = ({
 						setSelectedItems = { setSelectedItems }
 				/>
 				))}
-		</>
+		</div>
 	)
 
 };

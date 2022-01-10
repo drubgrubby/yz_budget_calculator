@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { DisplayBudget } from '.';
 
 const BudgetOverUnder = ({
 	budget,
@@ -7,7 +8,7 @@ const BudgetOverUnder = ({
 }) => {
 
 	const [budgetMath, setBudgetMath] = useState('Select design items below.');
-	const [budgetStatus, setBudgetStatus] = useState('You are under Budget. Is there something else you want?');
+	const [budgetStatus, setBudgetStatus] = useState('');
 
 
 	let highTotalToPrint = 0;
@@ -44,9 +45,9 @@ const BudgetOverUnder = ({
 		};
 
 		if (lowTotalToPrint === 0 || highTotalToPrint === 0) {
-			setBudgetMath('Select design items below.');	
+			setBudgetMath("Select design items below.");	
 		} else {
-			setBudgetMath(`Your current selections will cost between $${lowTotalToPrint} and $${highTotalToPrint}`);
+			setBudgetMath(`Your selections will cost between $${lowTotalToPrint} and $${highTotalToPrint}`);
 		}
 
 		// Figure out if it's over or under budget
@@ -61,9 +62,9 @@ const BudgetOverUnder = ({
 		
 
 		const statusOptions = {
-			OVER: 'You are over budget.  You can choose some less expensive options, or increase your budget.',
-			UNDER: 'You are under Budget. Is there something else you want?',
-			JUSTRIGHT: 'Good job.  Submit your selections and we will get started'
+			OVER: "You're over budget. You can choose some less expensive options, or increase your budget.",
+			UNDER: "You're under Budget. Is there something else you want?",
+			JUSTRIGHT: "You're right on target! Confirm your selections and we'll get started"
 		}
 
 		setBudgetStatus(statusOptions[overUnder]);
@@ -75,11 +76,10 @@ const BudgetOverUnder = ({
 
 
 	return (
-		<>
-			<div>{ budgetMath }</div>
-			<div>{ budgetStatus }</div>
-
-		</>
+		<div className="over-under">
+			<div className="selection-math">{ budgetMath }</div>
+			<div className='status-options'>{ budgetStatus }</div>
+		</div>
 	)
 
 };

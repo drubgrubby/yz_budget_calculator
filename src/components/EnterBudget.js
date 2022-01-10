@@ -6,9 +6,10 @@ const EnterBudget = ({
 }) => {
 
 	return (
-		<div>
-			<div>
-				<input 
+		<>
+			<div className="input-container">
+				<input
+					className='input' 
 					type='text' 
 					name='budget' 
 					value={ budget } 
@@ -17,8 +18,8 @@ const EnterBudget = ({
 				/>
 				<button onClick={ handleBudgetClick }>Let's Go!</button>
 			</div>
-			<div><span className='red'>{ errors }</span></div>
-	</div>
+			<div><span className='error'>{ errors }</span></div>
+	</>
 	)
 };
 export default EnterBudget;

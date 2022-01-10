@@ -3,6 +3,7 @@ import './components/BudgetCalculator.css';
 import { db } from './utilities/firebase.js';
 import { collection, getDocs } from 'firebase/firestore/lite';
 import { addIds } from './utilities/addId';
+import YardzenBackgroundImage from './assets/yardzen_background.png';
 
 // Import components
 import { EnterBudget, DisplayBudget, SelectDesignItems, BudgetOverUnder, Header } from './components/index';
@@ -85,10 +86,10 @@ function App() {
 
   return (
     <div className='App'>
-      <div className='calculator-container'>
+      <div className='calculator-container' style={{ backgroundImage: `url(${YardzenBackgroundImage})` }}>
         <div><Header /></div>
         <h2>Yardzen Budget Calculator</h2>
-        <div className='calculator-container'>
+        <div>
           {showEnterBudget 
             ? 
             <EnterBudget 

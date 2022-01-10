@@ -7,8 +7,8 @@ const DisplayBudget = ({
 
 	return (
 		<>
-			<div className='pointer' onClick={ handleBudgetClick }>Your budget is ${ budget }</div>
-			<div>Click budget to update</div>
+			<div className='display-budget' onClick={ handleBudgetClick }>Your budget is ${ budget }</div>
+			<div className='display-budget_click'>Click budget to update</div>
 		</>
 	)
 
