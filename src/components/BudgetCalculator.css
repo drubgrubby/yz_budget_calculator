@@ -9,132 +9,132 @@ we'd fix that.
 }
 
 .calculator-container {
-	font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
-	font-weight: 400;
-	font-size: 16px;
-	letter-spacing: 0px;
-	font-style: normal;
-	font-size: 19px;
-	letter-spacing: .5px;
-	line-height: 1.6em;
-	color: rgba(13,13,12,.78);
+  font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0px;
+  font-style: normal;
+  font-size: 19px;
+  letter-spacing: 0.5px;
+  line-height: 1.6em;
+  color: rgba(13, 13, 12, 0.78);
 }
 
 .header {
-padding: 25px 0;
-width: 100%;
-line-height: 1em;
-background-color: #f8f8f6;
-display: flex;
-align-items: center;
+  padding: 25px 0;
+  width: 100%;
+  line-height: 1em;
+  background-color: #f8f8f6;
+  display: flex;
+  align-items: center;
 }
 
 .calculator-container h2 {
-font-weight: 400;
-font-style: normal;
-font-size: 28px;
-letter-spacing: 4px;
-text-transform: none;
-line-height: 1.2em;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 28px;
+  letter-spacing: 4px;
+  text-transform: none;
+  line-height: 1.2em;
 }
 
 .error {
-	color: red;
-	font-size: 12px;
+  color: red;
+  font-size: 12px;
 }
 
 .logo-image {
-	width: 150px;
-	margin-left: 30px;
+  width: 150px;
+  margin-left: 30px;
 }
 
-button { 
-	color: #111;
-	border: 1px solid #111;
-	background-color: white;
-	transition: 0.1s background-color linear, 0.1s color linear;
-	cursor: pointer;
-	margin-left: 5px;
-	padding: 7px 11px;
+button {
+  color: #111;
+  border: 1px solid #111;
+  background-color: white;
+  transition: 0.1s background-color linear, 0.1s color linear;
+  cursor: pointer;
+  margin-left: 5px;
+  padding: 7px 11px;
 }
 
-button:hover { 
-	color: white;
-	background-color: #111;
-	transition: 0.1s background-color linear, 0.1s color linear;
-	}
+button:hover {
+  color: white;
+  background-color: #111;
+  transition: 0.1s background-color linear, 0.1s color linear;
+}
 
 .input-container {
-	margin-bottom: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 input {
-	font-size: 18px;
-	border: 1px solid #999;
-	padding: 5px 10px;
-	text-align: right;
+  font-size: 18px;
+  border: 1px solid #999;
+  padding: 5px 10px;
+  text-align: right;
 }
 
 input:focus {
-	outline: none;
+  outline: none;
 }
 
 .display-budget {
-	font-size: 26px;
-	font-weight: 400;
-	cursor: pointer;
+  font-size: 26px;
+  font-weight: 400;
+  cursor: pointer;
 }
 
 .display-budget_click {
-	margin-top: -3;
-	color: rgb(172, 184, 172);
-	font-size: 12px;
+  margin-top: -3;
+  color: rgb(172, 184, 172);
+  font-size: 12px;
 }
 
 .over-under {
-	border: 1px solid  rgb(172, 184, 172);
-	border-radius: 4px;
-	background-color: #beccbf;
-	width: 50%;
-	margin: auto;
+  border: 1px solid rgb(172, 184, 172);
+  border-radius: 4px;
+  background-color: #beccbf;
+  width: 50%;
+  margin: auto;
 }
 
 .design-options-container {
-	border: 1px solid black;
-	width: 360px;
-	height: 250px;
-	border-radius: 4px;
-	background-color: #f2f5f2;
+  border: 1px solid black;
+  width: 360px;
+  height: 250px;
+  border-radius: 4px;
+  background-color: #f2f5f2;
 }
 
 .design-options-title {
-	font-weight: 600;
+  font-weight: 600;
 }
 
 .select-items {
-	margin-top: 10px;
-	padding-bottom: 35px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 15px;
+  margin-top: 10px;
+  padding-bottom: 35px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
 }
 
 .design-radio-box {
-	margin-top: 10px;
-	text-align: left;
-	padding-left: 25px;
+  margin-top: 10px;
+  text-align: left;
+  padding-left: 25px;
 }
 
 .selection-math {
-	font-size: 18px;
-	font-weight: 400;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .status-options {
-	font-size: 18px;
-	font-weight: 400;
+  font-size: 18px;
+  font-weight: 400;
 }
