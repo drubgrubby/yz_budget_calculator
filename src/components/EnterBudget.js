@@ -4,6 +4,12 @@ const EnterBudget = ({
   handleBudgetInputChange,
   errors,
 }) => {
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      handleBudgetClick(e);
+    }
+  };
+
   return (
     <>
       <div className="input-container">
@@ -13,9 +19,12 @@ const EnterBudget = ({
           name="budget"
           value={budget}
           onChange={handleBudgetInputChange}
+          onKeyPress={handleEnter}
           placeholder="Enter project budget"
         />
-        <button onClick={handleBudgetClick}>Let's Go!</button>
+        <button type="submit" onClick={handleBudgetClick}>
+          Let's Go!
+        </button>
       </div>
       <div>
         <span className="error">{errors}</span>

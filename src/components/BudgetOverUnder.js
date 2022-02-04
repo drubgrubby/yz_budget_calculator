@@ -61,13 +61,17 @@ const BudgetOverUnder = ({ budget, items, selectedItems }) => {
         "You're right on target! Confirm your selections and we'll get started",
     };
 
-    setBudgetStatus(statusOptions[overUnder]);
+    // If nothing's been checked yet, don't show a comment.
+    if (selectedItems.length === 0) {
+      setBudgetStatus(<br />);
+    } else {
+      setBudgetStatus(statusOptions[overUnder]);
+    }
   };
 
   useEffect(() => {
     overUnderBudget(budget, items, selectedItems);
-    //! Figure out a better fix for this error
-    //eslint-disable-next-line
+    // eslint-disable-next-line
   }, [selectedItems, budget, items]);
 
   return (

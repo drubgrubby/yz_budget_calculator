@@ -1,7 +1,7 @@
-import { collection, getDocs } from 'firebase/firestore/lite';
+//import { collection, getDocs } from 'firebase/firestore/lite';
+//import { db } from './utilities/firebase';
 import { useEffect, useState } from 'react';
 import './components/BudgetCalculator.css';
-// Import components
 import {
   BudgetOverUnder,
   DisplayBudget,
@@ -11,16 +11,9 @@ import {
 } from './components/index';
 import { bgStyle } from './components/styles';
 import { addIds } from './utilities/addId';
-import { db } from './utilities/firebase';
-
-// Having trouble with Firebase so created fake data
-// import fakeFirebase from './utilities/fakeFirebase';
+import fakeFirebase from './utilities/fakeFirebase';
 
 function App() {
-  // // This is for my fake data. Leaving it just in case.
-  // const itemsId = addIds(fakeFirebase);
-
-  // Create and initialize state
   const [items, setItems] = useState();
   const [showEnterBudget, setShowEnterBudget] = useState(true);
   const [showSelectItems, setShowSelectItems] = useState(false);
@@ -28,15 +21,24 @@ function App() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [errors, setErrors] = useState('');
 
-  // Get items from Firebase collection
+  /**
+   * This was originally written as a coding challenge.
+   * As I don't want to continue pull from their database
+   * I've created a file that represents the data for this exercise.
+   * Below is the original code used to pull from Firebase.
+   *  **/
+  // //Get items from Firebase collection
+  // async function getItems() {
+  //   const itemsCollection = collection(db, 'items');
+  //   const itemSnapshot = await getDocs(itemsCollection);
+  //   const itemList = itemSnapshot.docs.map((doc) => doc.data());
+  //   const itemsId = addIds(itemList);
+  //   setItems(itemsId);
+  // }
+
+  // This is the replacement "database" call
   async function getItems() {
-    const itemsCollection = collection(db, 'items');
-    const itemSnapshot = await getDocs(itemsCollection);
-    const itemList = itemSnapshot.docs.map((doc) => doc.data());
-    // I added ids to the items 'cause items should have ids
-    // Also, there are duplicates and I didn't know if that was
-    // bad data, or part of the test.
-    const itemsId = addIds(itemList);
+    const itemsId = addIds(fakeFirebase);
     setItems(itemsId);
   }
 
@@ -45,9 +47,6 @@ function App() {
   }, []);
 
   const validateBudget = () => {
-    /* ToDo: This is ugly and only supports one error.
-    Make it better and more universal and import it */
-
     // If the budget is higher than the sum of the most expensive options
     // or lower than the least expensive option...ERROR!
     const budgetHigh = 200000;

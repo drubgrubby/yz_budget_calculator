@@ -9,6 +9,7 @@ const RadioButtonByType = ({
     return i.type === type;
   });
 
+  // This is for setting the starting state to none
   const onRadioChangeValue = (type, id) => {
     // If there's already an entry for that type, update it, else add it.
     let tempSelected = [...selectedItems];
@@ -17,7 +18,6 @@ const RadioButtonByType = ({
         tempSelected.splice(i, 1);
       }
     }
-
     let kvp = { type: type, id: id };
     setSelectedItems([...tempSelected, kvp]);
   };
@@ -30,7 +30,8 @@ const RadioButtonByType = ({
       <div className="design-options-title">{title}</div>
       <div className="design-radio-box">
         <div onChange={() => onRadioChangeValue(type, 0)}>
-          <input type="radio" value="0" name={type} /> None
+          <input type="radio" value="0" name={type} />
+          None
         </div>
         <div>
           {itemsByType.map((v, i) => {
